@@ -1,8 +1,8 @@
 package hellogaes;
 
 public class Mahasiswa {
-    private String Name;
-    private String NPM;
+    private final String Name;
+    private final String NPM;
     
     public Mahasiswa(String Name, String NPM){
         this.NPM = NPM;
