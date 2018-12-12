@@ -1,17 +1,18 @@
 package hellogaes;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
 public class MainActivity extends javax.swing.JFrame {
 
-    private final ArrayList<Mahasiswa> mhs;
+    private final Utility utils;
     private final DefaultTableModel model;
 
     public MainActivity() {
         initComponents();
         setLocationRelativeTo(null);
-        mhs = new ArrayList<>();
+        utils = new Utility();
         model = (DefaultTableModel) tableMahasiswa.getModel();
     }
 
@@ -58,7 +59,7 @@ public class MainActivity extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -83,15 +84,20 @@ public class MainActivity extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldNPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-        addMahasiswa();
-        refreshTable();
+        FormMahasiswa mhs = new FormMahasiswa(this, "Form Mahasiswa", utils);
+        if (mhs.run()) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Success Added");
+            refreshTable();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(null, "Not Added");
+        }
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -99,7 +105,7 @@ public class MainActivity extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void addMahasiswa() {
-        mhs.add(new Mahasiswa(textFieldName.getText(), textFieldNPM.getText()));
+        utils.addMahasiswa(textFieldName.getText(), textFieldNPM.getText());
         textFieldNPM.setText("");
         textFieldName.setText("");
     }
@@ -107,17 +113,18 @@ public class MainActivity extends javax.swing.JFrame {
     private void deleteMahasiswa() {
         if (tableMahasiswa.getSelectedRowCount() == 1) {
             int index = tableMahasiswa.getSelectedRow();
-            mhs.remove(index);
+            utils.removeMahasiswa(index);
             refreshTable();
-        }else if(tableMahasiswa.getSelectedRowCount() < 1)
+        } else if (tableMahasiswa.getSelectedRowCount() < 1) {
             javax.swing.JOptionPane.showMessageDialog(null, "SELECT DULU TABLENYA BANGSAT!");
-        else
+        } else {
             javax.swing.JOptionPane.showMessageDialog(null, "SELECT SATU AJA TABLENYA BANGSAT!");
+        }
     }
 
     private void refreshTable() {
         model.setRowCount(0);
-        for (Mahasiswa m : mhs) {
+        for (Mahasiswa m : utils.mhs) {
             Object row[] = {m.getName(), m.getNPM()};
             model.addRow(row);
         }
