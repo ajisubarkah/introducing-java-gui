@@ -1,7 +1,5 @@
 package hellogaes;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
 public class MainActivity extends javax.swing.JFrame {
