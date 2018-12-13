@@ -15,8 +15,7 @@ Hai gaes ini repository penggunaan frame di Java. Berikut fitur yang ditawarkan 
 
 ## Tampilan FormMahasiswa
 
-![screen]
-(https://raw.githubusercontent.com/ajisubarkah/introducing-frame-java/master/assets/FormMahasiswa.PNG)
+![screen](https://raw.githubusercontent.com/ajisubarkah/introducing-frame-java/master/assets/FormMahasiswa.PNG)
 
 
 ## LICENSE
