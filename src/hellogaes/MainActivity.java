@@ -21,8 +21,6 @@ public class MainActivity extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMahasiswa = new javax.swing.JTable();
-        textFieldName = new javax.swing.JTextField();
-        textFieldNPM = new javax.swing.JTextField();
         buttonAdd = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
@@ -33,7 +31,7 @@ public class MainActivity extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nama", "NPM"
+                "Nama", "NPM", "Fakultas", "Jurusan"
             }
         ));
         jScrollPane1.setViewportView(tableMahasiswa);
@@ -59,16 +57,11 @@ public class MainActivity extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldNPM, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -78,11 +71,7 @@ public class MainActivity extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonAdd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldNPM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAdd)
                     .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -93,8 +82,8 @@ public class MainActivity extends javax.swing.JFrame {
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         FormMahasiswa mhs = new FormMahasiswa(this, "Form Mahasiswa", utils);
         if (mhs.run()) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Success Added");
             refreshTable();
+            javax.swing.JOptionPane.showMessageDialog(null, "Success Added");
         } else {
             javax.swing.JOptionPane.showMessageDialog(null, "Not Added");
         }
@@ -104,28 +93,22 @@ public class MainActivity extends javax.swing.JFrame {
         deleteMahasiswa();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void addMahasiswa() {
-        utils.addMahasiswa(textFieldName.getText(), textFieldNPM.getText());
-        textFieldNPM.setText("");
-        textFieldName.setText("");
-    }
-
     private void deleteMahasiswa() {
         if (tableMahasiswa.getSelectedRowCount() == 1) {
             int index = tableMahasiswa.getSelectedRow();
             utils.removeMahasiswa(index);
             refreshTable();
         } else if (tableMahasiswa.getSelectedRowCount() < 1) {
-            javax.swing.JOptionPane.showMessageDialog(null, "SELECT DULU TABLENYA BANGSAT!");
+            javax.swing.JOptionPane.showMessageDialog(null, "SELECT DULU TABLENYA!");
         } else {
-            javax.swing.JOptionPane.showMessageDialog(null, "SELECT SATU AJA TABLENYA BANGSAT!");
+            javax.swing.JOptionPane.showMessageDialog(null, "SELECT SATU AJA TABLENYA!");
         }
     }
 
     private void refreshTable() {
         model.setRowCount(0);
         for (Mahasiswa m : utils.mhs) {
-            Object row[] = {m.getName(), m.getNPM()};
+            Object row[] = {m.getName(), m.getNPM(), m.getFakultas(), m.getJurusan()};
             model.addRow(row);
         }
     }
@@ -135,8 +118,6 @@ public class MainActivity extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableMahasiswa;
-    private javax.swing.JTextField textFieldNPM;
-    private javax.swing.JTextField textFieldName;
     // End of variables declaration//GEN-END:variables
 
 }

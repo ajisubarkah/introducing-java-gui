@@ -26,18 +26,11 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="340" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textFieldName" alignment="0" min="-2" pref="192" max="-2" attributes="0"/>
-                          <Component id="textFieldNPM" alignment="0" min="-2" pref="192" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton1" max="32767" attributes="0"/>
-                          <Component id="buttonAdd" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="buttonAdd" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -51,12 +44,7 @@
               <Component id="jScrollPane1" min="-2" pref="146" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="textFieldName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonAdd" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="textFieldNPM" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -75,19 +63,17 @@
         <Component class="javax.swing.JTable" name="tableMahasiswa">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="2" rowCount="0">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="true" title="Nama" type="java.lang.Object"/>
                 <Column editable="true" title="NPM" type="java.lang.Object"/>
+                <Column editable="true" title="Fakultas" type="java.lang.Object"/>
+                <Column editable="true" title="Jurusan" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="textFieldName">
-    </Component>
-    <Component class="javax.swing.JTextField" name="textFieldNPM">
-    </Component>
     <Component class="javax.swing.JButton" name="buttonAdd">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Mahasiswa"/>
